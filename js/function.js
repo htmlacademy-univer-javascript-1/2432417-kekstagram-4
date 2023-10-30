@@ -1,45 +1,26 @@
-// проверка длины
-function checkLenght (line, maxLength) {
-  return line.length <= maxLength;
-}
-checkLenght('проверяемая строка', 20);
-checkLenght('проверяемая строка', 18);
-checkLenght('проверяемая строка', 10);
-
-// проверка на палиндром
-function checkPalindrome (line) {
-  line = line.toLowerCase();
-  line = line.replaceAll(' ', '');
-  let reverseLine = '';
-  for (let i = line.length - 1; i >= 0; i--) {
-    reverseLine += line[i];
+// переводим всё время в минуты
+function getMinutes(time){
+  let hours = '';
+  for (let i = 0; i < time.indexOf(':'); i++) {
+    hours += time[i];
   }
-  return reverseLine === line;
-}
-
-checkPalindrome('топот');
-checkPalindrome('ДовОд');
-checkPalindrome('Кекс');
-checkPalindrome('Лёша на полке клопа нашёл ');
-
-// из строки в число
-function getNumber(line) {
-  line = String(line);
-  line = line.replaceAll(' ', '');
-  let number = '';
-  for (let i = 0; i < line.length; i++) {
-    if (!isNaN(line[i])) {
-      number += line[i];
-    }
+  let m = '';
+  for (let j = time.indexOf(':') + 1; j < time.length; j++) {
+    m += time[j];
   }
-  return Number(number);
+  return Number(hours) * 60 + Number(m);
 }
 
-getNumber('2023 год');
-getNumber('ECMAScript 2022');
-getNumber('1 кефир, 0.5 батона');
-getNumber('агент 007');
-getNumber('а я томат');
-getNumber(2023);
-getNumber(-1);
-getNumber(1.5);
+function checkMeetingTime (start, end, meet, duration) {
+  if ((getMinutes(meet) < getMinutes(start)) || (getMinutes(meet) + duration > getMinutes(end)))
+  {
+    return false;
+  }
+  return true;
+}
+
+checkMeetingTime('08:00', '17:30', '14:00', 90);
+checkMeetingTime('8:0', '10:0', '8:0', 120);
+checkMeetingTime('08:00', '14:30', '14:00', 90);
+checkMeetingTime('14:00', '17:30', '08:0', 90);
+checkMeetingTime('8:00', '17:30', '08:00', 900);
