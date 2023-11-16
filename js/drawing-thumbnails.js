@@ -1,3 +1,4 @@
+import { openFullSizePhoto } from './full-size-photo';
 const listOfPhotos = document.querySelector('.pictures');
 const photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
@@ -9,6 +10,10 @@ const createPhotosElement = (photos) => {
     photoElement.querySelector('.picture__img').alt = description;
     photoElement.querySelector('.picture__likes').textContent = likes;
     photoElement.querySelector('.picture__comments').textContent = comments.length;
+    photoElement.addEventListener('click', (evt) => {
+      evt.preventDefault();
+      openFullSizePhoto({url, description, likes, comments});
+    });
     listOfPhotos.appendChild(photoElement);
   });
   listOfPhotos.appendChild(listOfPhotosFragment);

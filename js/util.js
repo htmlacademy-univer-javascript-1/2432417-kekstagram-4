@@ -23,4 +23,6 @@ const getComments = (count) => {
   return COMMENTS;
 };
 
-export {getComments, getRandomInteger, getRandomArrayElement};
+const isEscKey = (evt) => evt.key === 'Escape';
+
+export {getComments, getRandomInteger, getRandomArrayElement, isEscKey};
