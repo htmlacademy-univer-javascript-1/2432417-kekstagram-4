@@ -1,4 +1,4 @@
-import { openFullSizePhoto } from './full-size-photo';
+import { openPhoto } from './open-big-photo.js';
 const listOfPhotos = document.querySelector('.pictures');
 const photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
@@ -12,7 +12,7 @@ const createPhotosElement = (photos) => {
     photoElement.querySelector('.picture__comments').textContent = comments.length;
     photoElement.addEventListener('click', (evt) => {
       evt.preventDefault();
-      openFullSizePhoto({url, description, likes, comments});
+      openPhoto({url, description, likes, comments});
     });
     listOfPhotos.appendChild(photoElement);
   });
