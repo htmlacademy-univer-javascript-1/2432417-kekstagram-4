@@ -33,7 +33,7 @@ const openPhoto = ({url, description, likes, comments}) => {
   bigPhotoModal.classList.remove('hidden');
   commentsContainer.innerHTML = '';
   bigPhotoModal.querySelector('.big-picture__img img').src = url;
-  bigPhotoModal.querySelector('.big-picture__img img').alt = description;
+  bigPhotoModal.querySelector('.social__caption').textContent = description;
   bigPhotoModal.querySelector('.likes-count').textContent = likes;
   bigPhotoModal.querySelector('.comments-count').textContent = comments.length;
   generateComments(comments);

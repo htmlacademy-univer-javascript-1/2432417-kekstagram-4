@@ -15,7 +15,7 @@ const getComments = (count) => {
     const COMMENT = {
       id: 100 + i,
       avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
-      massage: getRandomArrayElement(MESSAGE),
+      message: getRandomArrayElement(MESSAGE),
       name: getRandomArrayElement(NAMES)
     };
     COMMENTS.push(COMMENT);
