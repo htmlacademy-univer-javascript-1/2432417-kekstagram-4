@@ -42,23 +42,21 @@ const openPhoto = ({url, description, likes, comments}) => {
   bigPhotoModal.querySelector('.likes-count').textContent = likes;
   bigPhotoModal.querySelector('.comments-count').textContent = comments.length;
   allComments = comments;
-  loadCommentsPortion();
+  loadComments();
   body.classList.add('modal-open');
-  commentLoad.addEventListener('click', loadCommentsPortion);
+  commentLoad.addEventListener('click', loadComments);
   document.addEventListener('keydown', onOpenPhotoKeydown);
 };
 
-function loadCommentsPortion () {
+function loadComments () {
   const newPortion = allComments.slice(commentsShow, commentsShow + COMMENTS_COUNT);
   commentsShow += newPortion.length;
   generateComments(newPortion);
-
   if(commentsShow >= allComments.length){
     commentLoad.classList.add('hidden');
   } else{
     commentLoad.classList.remove('hidden');
   }
-
   commentCount.innerHTML = `${commentsShow} из <span class="comments-count">${allComments.length}</span> комментариев`;
 }
 
@@ -66,7 +64,7 @@ const closePhoto = () => {
   bigPhotoModal.classList.add('hidden');
   document.removeEventListener('keydown', onOpenPhotoKeydown);
   body.classList.remove('modal-open');
-  commentLoad.removeEventListener('click', loadCommentsPortion);
+  commentLoad.removeEventListener('click', loadComments);
   commentsShow = 0;
   allComments = [];
 };
