@@ -15,7 +15,7 @@ const getComments = (count) => {
     const COMMENT = {
       id: 100 + i,
       avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
-      massage: getRandomArrayElement(MESSAGE),
+      message: getRandomArrayElement(MESSAGE),
       name: getRandomArrayElement(NAMES)
     };
     COMMENTS.push(COMMENT);
@@ -23,4 +23,6 @@ const getComments = (count) => {
   return COMMENTS;
 };
 
-export {getComments, getRandomInteger, getRandomArrayElement};
+const isEscKey = (evt) => evt.key === 'Escape';
+
+export {getComments, getRandomInteger, getRandomArrayElement, isEscKey};
