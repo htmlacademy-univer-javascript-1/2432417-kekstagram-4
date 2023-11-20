@@ -1,5 +1,5 @@
 import { isEscKey } from './util.js';
-import { COMMENTS_COUNT } from './constants.js';
+import { COMMENT_COUNT } from './constants.js';
 
 const bigPhotoModal = document.querySelector('.big-picture');
 const bigPhotoCloseElement = document.querySelector('.big-picture__cancel');
