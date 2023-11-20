@@ -1,4 +1,3 @@
-
 const DESCRIPTIONS = [
   'Отдыхаю',
   'С семьёй',
@@ -24,4 +23,6 @@ const NAMES = [
   'Артём',
   'Витя'
 ];
-export {NAMES, MESSAGE, DESCRIPTIONS};
+
+const COMMENTS_COUNT = 5;
+export {NAMES, MESSAGE, DESCRIPTIONS, COMMENTS_COUNT};
