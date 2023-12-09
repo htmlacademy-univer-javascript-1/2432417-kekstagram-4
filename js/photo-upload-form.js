@@ -22,6 +22,13 @@ hashtagInput.addEventListener('keydown', closeByEscape);
 commentInput.addEventListener('keydown', closeByEscape);
 
 
+const pristine = new Pristine(uploadForm, {
+  classTo: 'img-upload__field-wrapper',
+  errorTextParent: 'img-upload__field-wrapper',
+  errorTextClass: 'img-upload__field-wrapper--error',
+});
+
+
 const closeForm = (successRate = true) => {
   formToEditPhoto.classList.add('hidden');
   document.body.classList.remove('modal-open');
@@ -29,8 +36,12 @@ const closeForm = (successRate = true) => {
   if (successRate) {
     image.style.removeProperty('transform');
     image.style.removeProperty('filter');
+    document.querySelector('.scale__control--value').value = '100%';
+    commentInput.value ='';
+    hashtagInput.value = '';
+    listOfEffects.querySelector('.effects__radio').checked = 'true';
   }
-  uploadForm.reset();
+  uploadInput.value = '';
 };
 
 const isErrorMessageShow = () => Boolean(document.body.querySelector('.error'));
@@ -54,12 +65,6 @@ commentInput.addEventListener('keydown', closeByEscape);
 listOfEffects.addEventListener('click', effectSlider);
 uploadForm.querySelector('.img-upload__scale').addEventListener('click', onScaleBtnClick);
 uploadInput.addEventListener('change', openForm);
-
-const pristine = new Pristine(uploadForm, {
-  classTo: 'img-upload__field-wrapper',
-  errorTextParent: 'img-upload__field-wrapper',
-  errorTextClass: 'img-upload__field-wrapper--error',
-});
 
 const validHashtag = (value) => {
   const hashtagsArray = value.toLowerCase().trim().split(/\s+/);
