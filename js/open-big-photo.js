@@ -1,4 +1,4 @@
-import { isEscKey } from './util.js';
+import { isEscapeKey } from './util.js';
 import { COMMENTS_COUNT } from './constants.js';
 
 const bigPhotoModal = document.querySelector('.big-picture');
@@ -28,7 +28,7 @@ const generateComments = (comments) => {
 };
 
 const onOpenPhotoKeydown = (evt) => {
-  if (isEscKey(evt)) {
+  if (isEscapeKey(evt)) {
     evt.preventDefault();
     bigPhotoModal.classList.add('hidden');
   }
