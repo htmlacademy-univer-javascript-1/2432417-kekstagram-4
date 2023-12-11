@@ -1,28 +1,13 @@
-import {NAMES, MESSAGE} from './constants.js';
+const TIME_TO_DELETE_MESSAGE = 5000;
 
-const getRandomInteger = (a, b) => {
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+const showDataErrorMessage = () => {
+  const message = document.querySelector('#data-error').content.querySelector('.data-error').cloneNode(true);
+  document.body.append(message);
+  setTimeout(() => {
+    message.remove();
+  }, TIME_TO_DELETE_MESSAGE);
 };
 
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
-
-const getComments = (count) => {
-  const COMMENTS = [];
-  for (let i = 0; i < count; i++) {
-    const COMMENT = {
-      id: 100 + i,
-      avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
-      message: getRandomArrayElement(MESSAGE),
-      name: getRandomArrayElement(NAMES)
-    };
-    COMMENTS.push(COMMENT);
-  }
-  return COMMENTS;
-};
-
-const isEscKey = (evt) => evt.key === 'Escape';
-
-export {getComments, getRandomInteger, getRandomArrayElement, isEscKey};
+export {isEscapeKey, showDataErrorMessage};

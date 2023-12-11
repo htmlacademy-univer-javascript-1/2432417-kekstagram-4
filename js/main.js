@@ -1,5 +1,13 @@
-import {getPhotoDescription} from './data.js';
 import {createPhotosElement} from './drawing-thumbnails.js';
 import './photo-upload-form.js';
-const photos = getPhotoDescription();
-createPhotosElement(photos);
+import { getData } from './api.js';
+import {showDataErrorMessage} from './util.js';
+
+let photos = [];
+
+const uploadPhotos = (data) => {
+  photos = data.slice();
+  createPhotosElement(photos);
+};
+
+getData(uploadPhotos, showDataErrorMessage);
