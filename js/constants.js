@@ -1,28 +1,12 @@
-const DESCRIPTIONS = [
-  'Отдыхаю',
-  'С семьёй',
-  'Красота',
-  'Работаем',
-  'Выходные'
-];
-
-const MESSAGE = [
-  'В целом всё неплохо. Но не всё.',
-  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше',
-  'Всё отлично!',
-  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
-  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
-];
-
-const NAMES = [
-  'Маша',
-  'Петя',
-  'Даша',
-  'Никита',
-  'Артём',
-  'Витя'
-];
-
 const COMMENTS_COUNT = 5;
-export {NAMES, MESSAGE, DESCRIPTIONS, COMMENTS_COUNT};
+const MAX_COMMENT_LENGTH = 140;
+const MAX_COUNT_HASHTAGS = 5;
+const HASHTAGFORMAT = /^#[a-zа-яё0-9]{1,19}$/i;
+const TIME_TO_DELETE_MESSAGE = 5000;
+const ZOOM = {
+  MIN: 25,
+  MAX: 100,
+  STEP: 25
+};
+
+export { COMMENTS_COUNT, MAX_COMMENT_LENGTH, MAX_COUNT_HASHTAGS, HASHTAGFORMAT, ZOOM, TIME_TO_DELETE_MESSAGE };
