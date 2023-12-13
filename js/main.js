@@ -1,13 +1,12 @@
-import {createPhotosElement} from './drawing-thumbnails.js';
+import { createPhotosElement } from './drawing-thumbnails.js';
 import './photo-upload-form.js';
 import { getData } from './api.js';
-import {showDataErrorMessage} from './util.js';
-
-let photos = [];
+import { showDataErrorMessage } from './util.js';
+import { initFilter } from './selection-filtres.js';
 
 const uploadPhotos = (data) => {
-  photos = data.slice();
-  createPhotosElement(photos);
+  createPhotosElement(data);
+  initFilter(data);
 };
 
 getData(uploadPhotos, showDataErrorMessage);
