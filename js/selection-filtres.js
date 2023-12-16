@@ -7,23 +7,28 @@ const filterElement = filterContainerElement.querySelector('.img-filters__form')
 
 let photos = [];
 
+const changeActiveFilter = (evt) => {
+  filterElement.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
+  evt.target.classList.add('img-filters__button--active');
+};
+
 const getDiscussedPhotos = (data) => {
   const sortPhotos = data.slice().sort((first, second) => second.comments.length - first.comments.length);
   return sortPhotos;
 };
 
-const setFilter = (cb) => {
+const setFilter = (event) => {
   filterElement.addEventListener('click', (evt) => {
     let newPhotos = photos.slice();
-    filterElement.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
-    evt.target.classList.add('img-filters__button--active');
-    if (evt.target.id.includes('random')) {
-      newPhotos = getRandomPhotos(photos);
+    changeActiveFilter(evt);
+    switch (evt.target.id) {
+      case 'filter-random':
+        newPhotos = getRandomPhotos(photos);
+        break;
+      case 'filter-discussed':
+        newPhotos = getDiscussedPhotos(photos);
     }
-    if (evt.target.id.includes('discussed')) {
-      newPhotos = getDiscussedPhotos(photos);
-    }
-    cb(newPhotos);
+    event(newPhotos);
   });
 };
 

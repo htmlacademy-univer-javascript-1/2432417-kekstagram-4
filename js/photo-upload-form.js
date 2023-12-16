@@ -2,7 +2,7 @@ import { isEscapeKey, showErrorMessage, showSuccessMessage } from './util.js';
 import { changeSlider as effectSlider } from './effect-slider.js';
 import { sendData } from './api.js';
 import { onScaleBtnClick } from './changing-size.js';
-import { MAX_COMMENT_LENGTH, MAX_COUNT_HASHTAGS, HASHTAGFORMAT } from './constants.js';
+import { MAX_COMMENT_LENGTH, MAX_COUNT_HASHTAGS, HASHTAGFORMAT, TYPES_OF_FILE } from './constants.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadInput = uploadForm.querySelector('.img-upload__input');
@@ -55,12 +55,24 @@ const openForm = () => {
   document.addEventListener('keydown', closeFormByEsc);
 };
 
+const onChooseFileBtnClick = () => {
+  openForm();
+  const file = uploadInput.files[0];
+  const isCorrectFileType = TYPES_OF_FILE.some((item) => file.name.toLowerCase().endsWith(item));
+  if (isCorrectFileType) {
+    image.src = URL.createObjectURL(file);
+  }
+  uploadForm.querySelectorAll('.effects__preview').forEach((item) => {
+    item.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
+  });
+};
+
 closeFormButton.addEventListener('click', closeForm);
 hashtagInput.addEventListener('keydown', closeByEscape);
 commentInput.addEventListener('keydown', closeByEscape);
 listOfEffects.addEventListener('click', effectSlider);
 uploadForm.querySelector('.img-upload__scale').addEventListener('click', onScaleBtnClick);
-uploadInput.addEventListener('change', openForm);
+uploadInput.addEventListener('change', onChooseFileBtnClick);
 
 const validHashtag = (value) => {
   const hashtagsArray = value.toLowerCase().trim().split(/\s+/);

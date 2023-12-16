@@ -3,9 +3,9 @@ const listOfPhotos = document.querySelector('.pictures');
 const photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 const clearlistOfPhoto = () => {
-  listOfPhotos.querySelectorAll('a.picture').forEach((item) => {
-    item.remove();
-  });
+  if (listOfPhotos.querySelectorAll('a.picture')) {
+    listOfPhotos.querySelectorAll('a.picture').forEach((item) => item.remove());
+  }
 };
 
 const createPhotosElement = (photos) => {
