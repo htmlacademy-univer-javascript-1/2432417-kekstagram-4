@@ -1,8 +1,8 @@
-import {isEscapeKey} from './util.js';
-import {changeSlider as effectSlider} from './effect-slider.js';
+import { isEscapeKey, showErrorMessage, showSuccessMessage } from './util.js';
+import { changeSlider as effectSlider } from './effect-slider.js';
 import { sendData } from './api.js';
 import { onScaleBtnClick } from './changing-size.js';
-import { showErrorMessage, showSuccessMessage } from './send-messages.js';
+import { MAX_COMMENT_LENGTH, MAX_COUNT_HASHTAGS, HASHTAGFORMAT } from './constants.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadInput = uploadForm.querySelector('.img-upload__input');
@@ -12,10 +12,6 @@ const hashtagInput = uploadForm.querySelector('.text__hashtags');
 const commentInput = uploadForm.querySelector('.text__description');
 const listOfEffects = uploadForm.querySelector('.effects__list');
 const image = uploadForm.querySelector('.img-upload__preview img');
-
-const MAX_COMMENT_LENGTH = 140;
-const MAX_COUNT_HASHTAGS = 5;
-const hashtagFormat = /^#[a-zа-яё0-9]{1,19}$/i;
 
 const closeByEscape = (evt) => evt.stopPropagation();
 hashtagInput.addEventListener('keydown', closeByEscape);
@@ -68,7 +64,7 @@ uploadInput.addEventListener('change', openForm);
 
 const validHashtag = (value) => {
   const hashtagsArray = value.toLowerCase().trim().split(/\s+/);
-  return !(hashtagsArray.find((item) => !hashtagFormat.test(item))) &&
+  return !(hashtagsArray.find((item) => !HASHTAGFORMAT.test(item))) &&
         !(hashtagsArray.length > MAX_COUNT_HASHTAGS) &&
         (new Set(hashtagsArray).size === hashtagsArray.length);
 };
@@ -78,7 +74,7 @@ const getMessageOfHashtagError = () => {
   if (hashtagsArray.length > MAX_COUNT_HASHTAGS) {
     return 'Превышено количество хэш-тегов';
   }
-  if (hashtagsArray.find((item) => !hashtagFormat.test(item))) {
+  if (hashtagsArray.find((item) => !HASHTAGFORMAT.test(item))) {
     return 'Введён невалидный хэш-тег';
   }
   if (new Set(hashtagsArray).size !== hashtagsArray.length) {

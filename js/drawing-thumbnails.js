@@ -2,8 +2,15 @@ import { openPhoto } from './open-big-photo.js';
 const listOfPhotos = document.querySelector('.pictures');
 const photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
+const clearlistOfPhoto = () => {
+  listOfPhotos.querySelectorAll('a.picture').forEach((item) => {
+    item.remove();
+  });
+};
+
 const createPhotosElement = (photos) => {
   const listOfPhotosFragment = document.createDocumentFragment();
+  clearlistOfPhoto();
   photos.forEach(({url, description, likes, comments}) => {
     const photoElement = photoTemplate.cloneNode(true);
     photoElement.querySelector('.picture__img').src = url;
