@@ -1,6 +1,6 @@
 const BASE_URLS = {
   GET: 'https://29.javascript.pages.academy/kekstagram/data',
-  POST: 'https://29.javascript.pages.academy/kekstagram',
+  POST: 'https://29.javascript.pages.academy/kekstagram/',
 };
 
 const sendRequest = (ifPossible, onError, method, body) => {
