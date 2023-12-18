@@ -1,6 +1,7 @@
 const slider = document.querySelector('.effect-level__slider');
 const image = document.querySelector('.img-upload__preview img');
 const effectLevel = document.querySelector('.effect-level__value');
+let effectName = '';
 
 noUiSlider.create(slider, {
   range: {
@@ -11,8 +12,6 @@ noUiSlider.create(slider, {
   step: 0.1,
   connect: 'lower',
 });
-
-let effectName = '';
 
 slider.noUiSlider.on('update', () => {
   const value = slider.noUiSlider.get();

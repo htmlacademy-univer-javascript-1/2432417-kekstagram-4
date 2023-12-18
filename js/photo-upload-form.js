@@ -1,7 +1,7 @@
 import { isEscapeKey, showErrorMessage, showSuccessMessage } from './util.js';
 import { changeSlider as effectSlider } from './effect-slider.js';
 import { sendData } from './api.js';
-import { onScaleBtnClick } from './changing-size.js';
+import { doOnScaleBtnClick } from './changing-size.js';
 import { MAX_COMMENT_LENGTH, MAX_COUNT_HASHTAGS, HASHTAGFORMAT, TYPES_OF_FILE } from './constants.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
@@ -71,7 +71,7 @@ closeFormButton.addEventListener('click', closeForm);
 hashtagInput.addEventListener('keydown', closeByEscape);
 commentInput.addEventListener('keydown', closeByEscape);
 listOfEffects.addEventListener('click', effectSlider);
-uploadForm.querySelector('.img-upload__scale').addEventListener('click', onScaleBtnClick);
+uploadForm.querySelector('.img-upload__scale').addEventListener('click', doOnScaleBtnClick);
 uploadInput.addEventListener('change', onChooseFileBtnClick);
 
 const validHashtag = (value) => {

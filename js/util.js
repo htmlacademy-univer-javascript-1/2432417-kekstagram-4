@@ -12,10 +12,10 @@ const showDataErrorMessage = () => {
 
 const removeMessage = () => {
   document.body.lastChild.remove();
-  document.removeEventListener('keydown', onEscapeBtnClick);
+  document.removeEventListener('keydown', doOnEscapeBtnClick);
 };
 
-function onEscapeBtnClick (evt) {
+function doOnEscapeBtnClick (evt) {
   if (isEscapeKey(evt)) {
     removeMessage();
   }
@@ -34,7 +34,7 @@ const renderMessage = (element) => {
     }
   });
 
-  document.addEventListener('keydown', onEscapeBtnClick);
+  document.addEventListener('keydown', doOnEscapeBtnClick);
 
   document.body.append(message);
 };

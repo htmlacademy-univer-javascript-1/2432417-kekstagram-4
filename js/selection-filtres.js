@@ -38,4 +38,4 @@ const initFilter = (data) => {
   setFilter(debounce(createPhotosElement, DELAY));
 };
 
-export {initFilter};
+export { initFilter };
