@@ -27,7 +27,7 @@ const generateComments = (comments) => {
   commentsContainer.append(commentFragment);
 };
 
-const onOpenPhotoKeydown = (evt) => {
+const doOnOpenPhotoKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     bigPhotoModal.classList.add('hidden');
@@ -45,7 +45,7 @@ const openPhoto = ({url, description, likes, comments}) => {
   loadComments();
   body.classList.add('modal-open');
   commentLoad.addEventListener('click', loadComments);
-  document.addEventListener('keydown', onOpenPhotoKeydown);
+  document.addEventListener('keydown', doOnOpenPhotoKeydown);
 };
 
 function loadComments () {
@@ -62,7 +62,7 @@ function loadComments () {
 
 const closePhoto = () => {
   bigPhotoModal.classList.add('hidden');
-  document.removeEventListener('keydown', onOpenPhotoKeydown);
+  document.removeEventListener('keydown', doOnOpenPhotoKeydown);
   body.classList.remove('modal-open');
   commentLoad.removeEventListener('click', loadComments);
   commentsShow = 0;
