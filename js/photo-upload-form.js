@@ -2,7 +2,7 @@ import { isEscapeKey, showErrorMessage, showSuccessMessage } from './util.js';
 import { changeSlider as effectSlider } from './effect-slider.js';
 import { sendData } from './api.js';
 import { doOnScaleBtnClick } from './changing-size.js';
-import { MAX_COMMENT_LENGTH, MAX_COUNT_HASHTAGS, HASHTAGFORMAT, TYPES_OF_FILE } from './constants.js';
+import { MAX_COMMENT_LENGTH, MAX_COUNT_HASHTAGS, HASHTAG_FORMAT, TYPES_OF_FILE } from './constants.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadInput = uploadForm.querySelector('.img-upload__input');
@@ -76,7 +76,7 @@ uploadInput.addEventListener('change', onChooseFileBtnClick);
 
 const validHashtag = (value) => {
   const hashtagsArray = value.toLowerCase().trim().split(/\s+/);
-  return !(hashtagsArray.find((item) => !HASHTAGFORMAT.test(item))) &&
+  return !(hashtagsArray.find((item) => !HASHTAG_FORMAT.test(item))) &&
         !(hashtagsArray.length > MAX_COUNT_HASHTAGS) &&
         (new Set(hashtagsArray).size === hashtagsArray.length);
 };
@@ -86,7 +86,7 @@ const getMessageOfHashtagError = () => {
   if (hashtagsArray.length > MAX_COUNT_HASHTAGS) {
     return 'Превышено количество хэш-тегов';
   }
-  if (hashtagsArray.find((item) => !HASHTAGFORMAT.test(item))) {
+  if (hashtagsArray.find((item) => !HASHTAG_FORMAT.test(item))) {
     return 'Введён невалидный хэш-тег';
   }
   if (new Set(hashtagsArray).size !== hashtagsArray.length) {

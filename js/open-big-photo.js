@@ -27,10 +27,18 @@ const generateComments = (comments) => {
   commentsContainer.append(commentFragment);
 };
 
+const closePhoto = () => {
+  bigPhotoModal.classList.add('hidden');
+  body.classList.remove('modal-open');
+  commentLoad.removeEventListener('click', loadComments);
+  commentsShow = 0;
+  allComments = [];
+};
+
 const doOnOpenPhotoKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    bigPhotoModal.classList.add('hidden');
+    closePhoto();
   }
 };
 
@@ -59,15 +67,6 @@ function loadComments () {
   }
   commentCount.innerHTML = `${commentsShow} из <span class="comments-count">${allComments.length}</span> комментариев`;
 }
-
-const closePhoto = () => {
-  bigPhotoModal.classList.add('hidden');
-  document.removeEventListener('keydown', doOnOpenPhotoKeydown);
-  body.classList.remove('modal-open');
-  commentLoad.removeEventListener('click', loadComments);
-  commentsShow = 0;
-  allComments = [];
-};
 
 bigPhotoCloseElement.addEventListener('click', () => {
   closePhoto();
